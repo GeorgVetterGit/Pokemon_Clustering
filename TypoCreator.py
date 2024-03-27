@@ -134,10 +134,9 @@ def main(word_list: list)->list[str]:
     return varieties_list
 
 text = list(pd.read_csv('pokemon.csv',delimiter=';')['Pokemon'])
-
-bootstrap_size = 1000
 all_variations = main(text)
 
+bootstrap_size = 1000
 bootstrap = []
 for i in range(bootstrap_size):
     variation = np.random.randint(1,len(all_variations))
