@@ -3,7 +3,7 @@ import numpy as np
 import string
 import random
 
-def case_variaties(word: str)->list:
+def case_variaties(word: str)->list[str]:
     'Change the capitalisation of the first two letters'
     case_list = []
     case_list.append([word.lower(), word])
@@ -12,7 +12,7 @@ def case_variaties(word: str)->list:
     case_list.append([word[:2].upper()+word[2:], word])
     return case_list
 
-def enter_signs(word: str)->list:
+def enter_signs(word: str)->list[str]:
     'add # and + at the end, because of fat fingers when hitting enter'
     enter_list = []
     enter_list.append([word+'#', word])
@@ -23,7 +23,7 @@ def no_spaces(word: str)->str:
     'eliminate all spaces from word'
     return [word.replace(' ',''), word]
 
-def swap_letter(word: str)->list:
+def swap_letter(word: str)->list[str]:
     'swap every letter of a word pairwise'
     swap_list = []
     for idx, letter in enumerate(word):
@@ -32,14 +32,14 @@ def swap_letter(word: str)->list:
             break
     return swap_list
 
-def double_letter(word: str)-> list:
+def double_letter(word: str)-> list[str]:
     'double every letter in the word'
     double_letter_list = []
     for idx, letter in enumerate(word):
         double_letter_list.append([word[:idx] + letter + word[idx:], word])
     return double_letter_list
 
-def one_out(word: str)->list:
+def one_out(word: str)->list[str]:
     'Remove on every possible position one letter from the input word'
     one_out = []
     for idx in range(len(word)):
@@ -85,7 +85,7 @@ neighbors = {
     '0': ['9','ß','p','o']
     }
 
-def replace_with_neighbor(word: str, neighbors = neighbors)->list:
+def replace_with_neighbor(word: str, neighbors = neighbors)->list[str]:
     'replace every letter in the word with every possible neighbor on a german keyboard'
     neighbor_replaced_words = []
     for idx, letter in enumerate(word):
@@ -96,7 +96,7 @@ def replace_with_neighbor(word: str, neighbors = neighbors)->list:
                 neighbor_replaced_words.append([word[:idx] + neighbor + word[idx+1:], word])
     return neighbor_replaced_words
 
-def b4_after_with_neighbor(word: str)->list:
+def b4_after_with_neighbor(word: str)->list[str]:
     'place before and after every letter in the word every possible neighbor on a german keyboard'
     neighbor_replaced_words = []
     for idx, letter in enumerate(word):
@@ -110,14 +110,14 @@ def b4_after_with_neighbor(word: str)->list:
     return neighbor_replaced_words
 
 
-def add_noise(word: str)->list:
+def add_noise(word: str)->list[str]:
     'add a random string with random length at the end of the word'
     noise_words = []
     for _ in range(6):
         noise_words.append([word+''.join([random.choice(string.ascii_letters) for i in range(random.randint(1,8))]), word])
     return noise_words
 
-def main(word_list: list)->list:
+def main(word_list: list)->list[str]:
     varieties_list = []
     for word in word_list:
         varieties_list.append([[word, word]])
