@@ -143,5 +143,4 @@ for i in range(bootstrap_size):
     bootstrap.append(all_variations[variation][np.random.randint(0,len(all_variations[variation]))])
 
 df = pd.DataFrame(bootstrap, columns=['word','cluster'])
-
 df.to_csv('clustered_typos.csv')
